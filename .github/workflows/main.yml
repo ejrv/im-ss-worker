@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       website_url:
-        description: 'آدرس وبسایت برای اسکرین‌شات'
+        description: 'url?'
         required: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
 
       - name: Take Screenshot
         run: |
-          # ساخت یک اسکریپت ساده برای گرفتن اسکرین‌شات
+          
           cat > screenshot.js << 'EOF'
           const puppeteer = require('puppeteer');
           const url = process.argv[2];
@@ -40,7 +40,7 @@ jobs:
           })();
           EOF
 
-          # اجرای اسکریپت
+          
           node screenshot.js ${{ inputs.website_url }}
 
       - name: Commit and Push Screenshot
